@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import $ from "jquery";
 import * as moment from "moment";
-import { FaHeart, FaSearch } from 'react-icons/fa';
-import * as TextToSpeechV1  from 'watson-developer-cloud/text-to-speech/v1.js';
+import { FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 import Verses from './Verses';
 import logo from './bible2.jpeg';
 import responsiveVoice from './responsivevoice';
-
-const wav = require('wav');
-const Speaker = require('audio-speaker/stream');
 
 
 class App extends Component {
@@ -27,17 +22,6 @@ class App extends Component {
     this.searchBibleVerse = this.searchBibleVerse.bind(this);
     this.readTextResults = this.readTextResults.bind(this);
     this.showVerse = this.showVerse.bind(this);
-
-    $( () => {
-
-    // let windowHeight = $(window).height();
-
-    // let main = $("#center-div");    
-    // $("#center-div").css({
-    //   top: ((windowHeight / 2) - (main.height() / 2)) + "px",
-    // });
-
-    });
 
   }
 
@@ -83,27 +67,6 @@ class App extends Component {
       });
 
     }
-
-  }
-
-  readTextResults(){
-
-    let textToSpeech = new TextToSpeechV1({
-      // if left unspecified here, the SDK will fall back to the TEXT_TO_SPEECH_USERNAME and TEXT_TO_SPEECH_PASSWORD
-      // environment properties, and then Bluemix's VCAP_SERVICES environment property
-      username: 'dancankimani70@gmail.com',
-      password: 'D1A1N1kim!'
-    });
-    
-    let reader = new wav.Reader();
-    
-    // the "format" event gets emitted at the end of the WAVE header
-    reader.on('format', (format) => {
-      // the WAVE header is stripped from the output of the reader
-      reader.pipe(new Speaker(format));
-    });
-    
-    textToSpeech.synthesize({ text: 'hello from IBM Watson', accept: 'audio/wav' }).pipe(reader);
 
   }
 
