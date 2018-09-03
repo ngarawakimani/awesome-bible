@@ -20,7 +20,6 @@ class App extends Component {
     }  
 
     this.searchBibleVerse = this.searchBibleVerse.bind(this);
-    this.readTextResults = this.readTextResults.bind(this);
     this.showVerse = this.showVerse.bind(this);
 
   }
